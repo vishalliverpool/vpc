@@ -230,4 +230,22 @@ variable "create_egress_only_igw" {
   default     = true
 }
 
+variable "vpc_endpoint_tags" {
+  description = "Additional tags for the VPC Endpoints"
+  type        = map(string)
+  default     = {}
+}
+
+variable "secondary_cidr_blocks" {
+  description = "List of secondary CIDR blocks to associate with the VPC to extend the IP Address pool"
+  type        = list(string)
+  default     = []
+}
+variable "reuse_nat_ips" {
+  description = "Should be true if you don't want EIPs to be created for your NAT Gateways and will instead pass them in via the 'external_nat_ip_ids' variable"
+  type        = bool
+  default     = false
+}
+
+
 
