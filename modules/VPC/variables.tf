@@ -164,3 +164,70 @@ variable "create_igw" {
   default     = true
 }
 
+variable "intra_subnet_ipv6_prefixes" {
+  description = "Assigns IPv6 intra subnet id based on the Amazon provided /56 prefix base 10 integer (0-256). Must be of equal length to the corresponding IPv4 subnet list"
+  type        = list(string)
+  default     = []
+}
+
+variable "assign_ipv6_address_on_creation" {
+  description = "Assign IPv6 address on subnet, must be disabled to change IPv6 CIDRs. This is the IPv6 equivalent of map_public_ip_on_launch"
+  type        = bool
+  default     = false
+}
+
+variable "private_subnet_assign_ipv6_address_on_creation" {
+  description = "Assign IPv6 address on private subnet, must be disabled to change IPv6 CIDRs. This is the IPv6 equivalent of map_public_ip_on_launch"
+  type        = bool
+  default     = null
+}
+
+variable "public_subnet_assign_ipv6_address_on_creation" {
+  description = "Assign IPv6 address on public subnet, must be disabled to change IPv6 CIDRs. This is the IPv6 equivalent of map_public_ip_on_launch"
+  type        = bool
+  default     = null
+}
+
+variable "enable_nat_gateway" {
+  description = "Should be true if you want to provision NAT Gateways for each of your private networks"
+  type        = bool
+  default     = false
+}
+
+variable "single_nat_gateway" {
+  description = "Should be true if you want to provision a single shared NAT Gateway across all of your private networks"
+  type        = bool
+  default     = false
+}
+
+variable "one_nat_gateway_per_az" {
+  description = "Should be true if you want only one NAT Gateway per availability zone. Requires `var.azs` to be set, and the number of `public_subnets` created to be greater than or equal to the number of availability zones specified in `var.azs`."
+  type        = bool
+  default     = false
+}
+
+variable "default_vpc_tags" {
+  description = "Additional tags for the Default VPC"
+  type        = map(string)
+  default     = {}
+}
+
+variable "default_security_group_egress" {
+  description = "List of maps of egress rules to set on the default security group"
+  type        = list(map(string))
+  default     = null
+}
+
+variable "default_security_group_tags" {
+  description = "Additional tags for the default security group"
+  type        = map(string)
+  default     = {}
+}
+
+variable "create_egress_only_igw" {
+  description = "Controls if an Egress Only Internet Gateway is created and its related routes."
+  type        = bool
+  default     = true
+}
+
+
