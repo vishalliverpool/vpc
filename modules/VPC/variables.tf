@@ -75,11 +75,6 @@ variable "enable_classiclink_dns_support" {
   default     = null
 }
 
-variable "enable_nat_gateway" {
-  description = "Should be true if you want to provision NAT Gateways for each of your private networks"
-  type        = bool
-  default     = false
-}
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)
